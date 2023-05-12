@@ -32,7 +32,7 @@ pub fn Icons(cx: Scope) -> impl IntoView {
         NAMES
             .iter()
             .enumerate()
-            .filter_map(move |(index, feat_name)| feat_name.contains(&search_content()).then_some(index))
+            .filter_map(move |(index, feat_name)| feat_name.to_lowercase().contains(&search_content()).then_some(index))
             .collect::<Vec<_>>()
     });
 
@@ -87,9 +87,7 @@ pub fn Icons(cx: Scope) -> impl IntoView {
 
     let container_height = move || {
         let height = (item_count() as u32 / col_count() + 1) * item_size;
-        let styles = format!("height: {height}px;");
-        log!("{}", styles);
-        styles
+        format!("height: {height}px;")
     };
 
     view! { cx,

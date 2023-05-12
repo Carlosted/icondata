@@ -11,8 +11,7 @@ pub fn SearchBar(cx: Scope) -> impl IntoView {
 
     let key_pressed = move |event: KeyboardEvent| {
         let input_string = event_target_value(&event);
-        console_log(&input_string);
-        search_content.set(input_string);
+        search_content.set(input_string.to_lowercase());
     };
 
     view! { cx,
